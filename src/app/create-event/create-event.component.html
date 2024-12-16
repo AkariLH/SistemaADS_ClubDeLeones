@@ -1,0 +1,52 @@
+<div class="form-container">
+    <h2>Crear Evento Deportivo</h2>
+    <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label>Nombre del Evento:</label>
+        <input formControlName="nombre" type="text" />
+      </div>
+      <div>
+        <label>Área Deportiva:</label>
+        <select formControlName="area">
+          <option *ngFor="let area of areasDeportivas" [value]="area">{{ area }}</option>
+        </select>
+      </div>
+      <div>
+        <label>Fechas de Inscripción:</label>
+        <input formControlName="fechaInicioInscripcion" type="date" />
+        <input formControlName="fechaCierreInscripcion" type="date" />
+      </div>
+      <div>
+        <label>Fechas del Evento:</label>
+        <input formControlName="fechaInicioEvento" type="date" />
+        <input formControlName="fechaFinEvento" type="date" />
+      </div>
+      <div formArrayName="horarios">
+        <h3>Horarios</h3>
+        <div *ngFor="let horario of horarios.controls; let i = index" [formGroupName]="i">
+          <input formControlName="dia" type="date" />
+          <input formControlName="hora" type="time" />
+          <button (click)="eliminarHorario(i)">Eliminar</button>
+        </div>
+        <button (click)="agregarHorario()">Agregar Horario</button>
+      </div>
+      <div>
+        <label>Modalidades de Participación:</label>
+        <input formControlName="modalidades" type="text" />
+      </div>
+      <div>
+        <label>Costo de Inscripción:</label>
+        <input formControlName="costo" type="number" />
+      </div>
+      <div>
+        <label>Requisitos y Reglas:</label>
+        <textarea formControlName="requisitos"></textarea>
+      </div>
+      <div>
+        <label>Convocatoria:</label>
+        <input formControlName="convocatoria" type="file" />
+      </div>
+      <button type="submit">Guardar Evento</button>
+    </form>
+  </div>
+  
